@@ -11,25 +11,25 @@ The app is using `open weather api` a greate api ever. Redux Toolkit is being us
 For styling, `TailwindCSS` one of the greatest CSS framework ever. Weather App is the most popular `React App` out there. 
 I'm exploring more about `React`. The most interesting thing about `React` for me is **useEffect**. 
 
-### Clone this repository
+#### Clone this repository
 
   ```bash 
     https://github.com/virakkhun/weather-app.git
   ```
 
-### Go to the project directory
+#### Go to the project directory
 
   ```bash 
     cd weather-app
   ```
 
-### In the project directory
+#### In the project directory
 
   ```bash 
     yarn install
   ```
 
-### Run on local
+#### Run on local
 
   ```bash 
     yarn dev
