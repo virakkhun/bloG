@@ -6,5 +6,8 @@ export const useWeatherService = async () => {
   const long = getCurrentLocation().longitude
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`
 
-  return await fetch(url)
+  const fetchWeather = await fetch(url)
+  const response = await fetchWeather.json()
+
+  return response
 }

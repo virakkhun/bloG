@@ -1,9 +1,11 @@
-export interface IWeather {
+interface IWeather {
+  id: number
   main: string
   description: string
+  icon: string
 }
 
-export interface IMain {
+interface IMain {
   temp: number
   feels_like: number
   temp_min: number
@@ -12,22 +14,21 @@ export interface IMain {
   humidity: number
 }
 
-export interface IWind {
+interface IWind {
   speed: number
   deg: number
 }
 
-export interface Weather {
-  visibility: string
-  weather: IWeather[]
-  main: IMain
-  wind: IWind
-  rain: any
-  clouds: any
-  name: string
+interface ICloud {
+  all: number
 }
 
 export interface WeatherState {
   loading: boolean
-  weather: Weather
+  weather: IWeather[]
+  main: IMain
+  visibility: number
+  wind: IWind
+  cloud: ICloud
+  name: string
 }
