@@ -13,21 +13,21 @@ I'm exploring more about `React`. The most interesting thing about `React` for m
 
 ### Clone this repository
 
-  ```https://github.com/virakkhun/weather-app.git```
+  ```bash https://github.com/virakkhun/weather-app.git```
 
 ### Go to the project directory
 
-  ```cd weather-app```
+  ```bash cd weather-app```
 
 ### In the project directory
 
-  ```yarn install```
+  ```bash yarn install```
 
 ### Run on local
 
-  ```yarn dev```
+  ```bash yarn dev```
 
-  ***App is running on port***
+  ***App is running at***
 
-  __localhost:3000__
+  [localhost:3000](localhost:3000)
 
