@@ -14,7 +14,7 @@ I'm exploring more about `React`. The most interesting thing about `React` for m
 - Clone this repository
 
   ```bash 
-    https://github.com/virakkhun/weather-app.git
+    git clone https://github.com/virakkhun/weather-app.git
   ```
 
 - Go to the project directory
