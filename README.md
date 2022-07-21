@@ -37,5 +37,5 @@ I'm exploring more about `React`. The most interesting thing about `React` for m
 
   ***App is running at***
 
-  [View](localhost:3000)
+  [View](http://localhost:3000)
 
