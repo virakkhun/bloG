@@ -1,11 +1,11 @@
-interface IWeather {
+export interface IWeather {
   id: number
   main: string
   description: string
   icon: string
 }
 
-interface IMain {
+export interface IMain {
   temp: number
   feels_like: number
   temp_min: number
@@ -14,12 +14,12 @@ interface IMain {
   humidity: number
 }
 
-interface IWind {
+export interface IWind {
   speed: number
   deg: number
 }
 
-interface ICloud {
+export interface ICloud {
   all: number
 }
 
