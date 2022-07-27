@@ -9,13 +9,9 @@ const Home: React.FC = () => {
     (state: RootState) => state.weather
   )
   const dispatch = useDispatch<AppDispatch>()
-  const effect = useRef(true)
 
   useEffect(() => {
-    if (effect.current) {
-      effect.current = false
-      dispatch(fetchWeater())
-    }
+    dispatch(fetchWeater())
   }, [])
 
   if (!loading) {
