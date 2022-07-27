@@ -2,15 +2,15 @@ export interface Coord {
   latitude: string | number
   longitude: string | number
 }
-export const getCurrentLocation = (): Coord => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      return coords as Coord
-    })
-  }
+export const getCurrentLocation = async (): Promise<Coord> => {
+  const apiUrl = 'https://ipapi.co/json/'
+
+  const data = await fetch(apiUrl)
+
+  const { latitude, longitude } = await data.json()
 
   return {
-    latitude: 11.5625,
-    longitude: 104.916
+    latitude: latitude,
+    longitude: longitude
   }
 }
