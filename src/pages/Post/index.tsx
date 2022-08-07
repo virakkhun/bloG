@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
+import Icons from '../../components/Icons/Icons'
 import PostComponent from '../../components/posts/PostComponet'
 import { fetchPosts } from '../../features/post/getPostSlice'
 
@@ -27,14 +29,24 @@ const Post: React.FC = () => {
 
   return (
     <div className="text-default">
-      <p className="mb-md">
-        Yewh Hewh... We got{' '}
-        <span className="text-action">{post.length.toString()}</span> here mate!
-      </p>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="flex justify-between items-center">
+        <p className="mb-md">
+          Yewh Hewh... We got{' '}
+          <span className="text-action">{post.length.toString()}</span> here
+          mate!
+        </p>
+        <Link
+          to="/post/create"
+          className="text-action hover:text-default transition-all flex items-center gap-2 mb-md"
+        >
+          <span>Post Here</span>
+          <Icons name="arrow-right-circle" style="w-5 g-5" />
+        </Link>
+      </div>
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
         {post.map((p) => (
           <div key={p.id} className="bg-secondary p-3 rounded-md">
-            <PostComponent body={p.body} id={p.id} title={p.title} />
+            <PostComponent body={p.body} id={p.id!} title={p.title} />
           </div>
         ))}
       </div>
