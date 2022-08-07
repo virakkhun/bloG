@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Footer from './components/layouts/Footer'
 import Header from './components/layouts/Header'
 import Home from './pages/Home/index'
 import Post from './pages/Post'
+import CreatePost from './pages/Post/create'
 import Weather from './pages/Weather/index'
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/post" element={<Post />} />
+        <Route path="/post/create" element={<CreatePost />} />
       </Routes>
       <Footer />
     </div>

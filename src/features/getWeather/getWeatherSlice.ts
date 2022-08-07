@@ -1,41 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { useWeatherService } from './getWeather.service'
-import { WeatherState } from './weather.type'
+import { CurrentWeather } from './weather.type'
 
-const initialState: WeatherState = {
-  cloud: {
-    all: 0
-  },
-  loading: false,
-  main: {
-    feels_like: 0,
-    humidity: 0,
-    pressure: 0,
-    temp: 0,
-    temp_max: 0,
-    temp_min: 0
-  },
-  name: '',
-  visibility: 0,
-  weather: [
-    {
-      description: '',
-      icon: '',
-      id: 0,
-      main: ''
-    }
-  ],
-  wind: {
-    deg: 0,
-    speed: 0
-  }
+const initialState = {
+  isFetching: false,
+  currentWeather: {} as CurrentWeather
 }
 
-export const fetchWeater = createAsyncThunk('weather/fetchWeater', async () => {
-  const res = await useWeatherService()
-
-  return res
-})
+export const fetchWeater = createAsyncThunk<CurrentWeather>(
+  'weather/fetchWeater',
+  async () => {
+    const { current_weather } = await useWeatherService()
+    return current_weather
+  }
+)
 
 export const weatherSlice = createSlice({
   name: 'weather',
@@ -43,23 +21,18 @@ export const weatherSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchWeater.pending, (state) => {
-      state.loading = true
+      state.isFetching = true
     })
     builder.addCase(
       fetchWeater.fulfilled,
-      (state, action: PayloadAction<WeatherState>) => {
-        state.loading = false
-        state.cloud = action.payload.cloud
-        state.main = action.payload.main
-        state.name = action.payload.name
-        state.visibility = action.payload.visibility
-        state.weather = action.payload.weather
-        state.wind = action.payload.wind
+      (state, action: PayloadAction<CurrentWeather>) => {
+        state.isFetching = false
+        state.currentWeather = action.payload
       }
     )
     builder.addCase(fetchWeater.rejected, (state, action) => {
-      state.loading = false
-      console.log(action)
+      state.isFetching = false
+      console.log(state.currentWeather)
     })
   }
 })

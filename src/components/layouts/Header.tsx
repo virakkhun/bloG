@@ -16,7 +16,7 @@ const Header: React.FC = () => (
         <Link to="/post">
           <Icons name="social" style="h-5 w-5 fill-default" />
         </Link>
-        <a href={'https://github.com'}>
+        <a href={'https://github.com/virakkhun/weather-app.git'}>
           <Icons name="github" style="h-5 w-5 fill-secondary" />
         </a>
       </div>
