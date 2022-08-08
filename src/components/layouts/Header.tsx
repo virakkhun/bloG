@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import Icons from '../../components/Icons/Icons'
-import { formatAppName } from '../../utils/format/app-name.format'
-import { name } from '../../../package.json'
 const Header: React.FC = () => (
   <>
     <div className="flex justify-between items-center">
-      <h1 className="underline text-default py-md">{formatAppName(name)}</h1>
+      <div className="py-5">
+        <img src="/src/assets/logo/logo.png" alt="logo" />
+      </div>
       <div className="flex justify-between gap-md">
         <Link to="/">
           <Icons name="home" style="h-5 w-5 fill-default" />

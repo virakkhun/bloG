@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
+import Spinner from '../../components/assets/Spinner'
 import Icons from '../../components/Icons/Icons'
 import PostComponent from '../../components/posts/PostComponet'
 import { fetchPosts } from '../../features/post/getPostSlice'
@@ -10,20 +11,17 @@ import { fetchPosts } from '../../features/post/getPostSlice'
 const Post: React.FC = () => {
   const { post, isLoading } = useSelector((state: RootState) => state.post)
   const dispatch = useDispatch<AppDispatch>()
-  const effect = useRef(true)
 
   useEffect(() => {
-    if (effect.current) {
-      effect.current = false
-      dispatch(fetchPosts())
-    }
+    dispatch(fetchPosts())
   }, [])
 
   if (isLoading) {
     return (
-      <>
-        <p>Loading...</p>
-      </>
+      <div className="flex flex-col justify-center items-center gap-3 w-full h-screen">
+        <p className="text-default">Loading...</p>
+        <Spinner />
+      </div>
     )
   }
 
