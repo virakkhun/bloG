@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
+import Spinner from '../../components/assets/Spinner'
 import { createPost } from '../../features/post/createPostSlice'
 
 const CreatePost: React.FC = () => {
+  let navigate = useNavigate()
   const [title, setTitle] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
   const { isLoading } = useSelector((state: RootState) => state.createPost)
@@ -19,7 +22,9 @@ const CreatePost: React.FC = () => {
         title: title,
         userId: Math.floor(Math.random() * 1000)
       })
-    )
+    ).then(() => {
+      navigate('/post')
+    })
   }
   if (!isLoading) {
     return (
@@ -62,8 +67,9 @@ const CreatePost: React.FC = () => {
     )
   } else {
     return (
-      <div>
-        <p>Loading...! Sending your post to an another planet or universe...</p>
+      <div className="flex flex-col justify-center items-center gap-3 w-full h-screen">
+        <p className="text-default">Loading...</p>
+        <Spinner />
       </div>
     )
   }
