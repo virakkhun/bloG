@@ -1,8 +1,7 @@
 import { PostBody } from './post.type'
 
 export const CreatePostService = async (payload: any | PostBody) => {
-  const base_url = import.meta.env.VITE_JSON_PLACE
-  const createPost = await fetch(base_url, {
+  const createPost = await fetch('/post', {
     body: JSON.stringify(payload),
     method: 'POST',
     headers: {
