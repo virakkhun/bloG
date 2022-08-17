@@ -21,7 +21,7 @@ export const saveCookie = (payload: {
 
 export const getCookie = (key: string) => {
   const value = jsCookie.get(key)
-  const decryptedValue = decryptHelper(value !== undefined ? value.toString() : '')
-
-  return decryptedValue ? decryptedValue : ''
+  if(value !== undefined && value !== '') {
+    return decryptHelper(value.toString())
+  }
 }
