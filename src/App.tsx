@@ -1,23 +1,27 @@
-import { Route, Routes } from 'react-router-dom'
-import Footer from './components/layouts/Footer'
-import Header from './components/layouts/Header'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/index'
 import Post from './pages/Post'
 import CreatePost from './pages/Post/create'
-import Weather from './pages/Weather/index'
+import DefaultLayout from './layouts/DefaultLayout'
+import AuthLayout from './layouts/AuthLayout'
+import Login from './pages/Auth/login'
+import Register from './pages/Auth/register'
+import Error from './pages/error'
 
 function App() {
   return (
-    <div className="lg:px-32 md:px-16 px-2 bg-primary">
-      <Header />
-      <Routes>
+    <Routes>
+      <Route path="/" element={<DefaultLayout /> }>
         <Route path="/" element={<Home />} />
-        <Route path="/weather" element={<Weather />} />
         <Route path="/post" element={<Post />} />
         <Route path="/post/create" element={<CreatePost />} />
-      </Routes>
-      <Footer />
-    </div>
+      </Route>
+      <Route path="/" element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Route>
+      <Route path="*" element={<Error />} />
+    </Routes>
   )
 }
 
