@@ -22,7 +22,7 @@ const CreatePost: React.FC = () => {
       createPost({
         body: desc,
         title: title,
-        authorId: '62fc8d096293a79439fce638',
+        authorId: userInfo().id,
         slug: `#${title}_`
       })
     ).then(() => {
