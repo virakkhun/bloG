@@ -8,18 +8,8 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     logLevel: 'info',
     server: {
-      proxy: {
-        '/weather': {
-          target: env.VITE_WEATHER_BASE_URL,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/weather/, '')
-        },
-        '/post': {
-          target: env.VITE_JSON_PLACE_HOLDER,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/post/, '')
-        }
-      }
+      port: 8000,
+      host: true
     }
   }
 })

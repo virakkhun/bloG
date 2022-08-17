@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { useGetPostService } from './getPost.service'
-import { IPost } from './post.type'
+import { useGetPostService } from './services/getPost.service'
+import { IPost } from './interface/post.type'
 
 const initialState: IPost = {
   isLoading: false,
@@ -8,8 +8,7 @@ const initialState: IPost = {
 }
 
 export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
-  const data = await useGetPostService()
-  return data
+  return await useGetPostService()
 })
 
 export const postSlice = createSlice({
@@ -21,13 +20,12 @@ export const postSlice = createSlice({
       .addCase(fetchPosts.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(fetchPosts.fulfilled, (state, action) => {
+      .addCase(fetchPosts.fulfilled, (state, {payload}) => {
         state.isLoading = false
-        state.post = action.payload
+        state.post = payload.data
       })
-      .addCase(fetchPosts.rejected, (state, action) => {
+      .addCase(fetchPosts.rejected, (state) => {
         state.isLoading = false
-        console.log(action.error)
       })
   }
 })

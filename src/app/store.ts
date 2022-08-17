@@ -1,12 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
-import weahterReducer from '../features/getWeather/getWeatherSlice'
 import createPostReducer from '../features/post/createPostSlice'
 import postReducer from '../features/post/getPostSlice'
+import loginReducer from '../features/auth/login.slice'
+import registerReducer from '../features/auth/register.slice'
+import userInfoReducer from '../features/user/getuserinfo.slice'
+
 export const store = configureStore({
   reducer: {
-    weather: weahterReducer,
     post: postReducer,
-    createPost: createPostReducer
+    createPost: createPostReducer,
+    login: loginReducer,
+    register: registerReducer,
+    userinfo: userInfoReducer
   }
 })
 

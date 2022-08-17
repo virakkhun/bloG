@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
 import Spinner from '../../components/assets/Spinner'
 import { createPost } from '../../features/post/createPostSlice'
+import { userInfo } from '../../utils/storage/userInfo'
 
 const CreatePost: React.FC = () => {
+  document.title = 'Create Post'
   let navigate = useNavigate()
   const [title, setTitle] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
@@ -20,7 +22,8 @@ const CreatePost: React.FC = () => {
       createPost({
         body: desc,
         title: title,
-        userId: Math.floor(Math.random() * 1000)
+        authorId: '62fc8d096293a79439fce638',
+        slug: `#${title}_`
       })
     ).then(() => {
       navigate('/post')
