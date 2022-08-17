@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '../../app/store'
 import Loading from '../../components/assets/Loading'
 import Icons from '../../components/Icons/Icons'
 import { Register as UserRegister } from '../../features/auth/register.slice'
+import loginImageUrl from '../../assets/images/Blogging-pana.svg'
 
 const Register: React.FC = () => {
   document.title = 'Register'
@@ -33,16 +34,16 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-screen bg-primary flex justify-center items-center">
+    <div className="w-full h-screen bg-white flex gap-10 justify-center items-center md:px-0 px-4">
       <form
         onSubmit={handleSubmit}
-        className="md:w-1/3 w-full flex flex-col gap-4 md:px-0 px-2"
+        className="md:w-1/3 w-full flex flex-col gap-4 md:p-4 bg-default p-2 border border-gray-300"
       >
-        <p className="text-3xl font-bold text-center mb-10 text-default">
-          BlogPost 🎴
+        <p className="text-3xl font-bold text-center mb-10 text-primary">
+          bLoG
         </p>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-action">
+          <label htmlFor="email" className="text-primary">
             Email
           </label>
           <input
@@ -50,12 +51,14 @@ const Register: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border-b border-default w-full bg-transparent outline-none text-white pl-2 pb-2 hover:scale-105 transition-all duration-300"
+            className="border-b border-gray-300 w-full bg-transparent outline-none pl-2 pb-2 text-primary"
             placeholder="johndoe@gmail.com"
+            autoComplete="none"
+            autoFocus={true}
           />
         </div>
         <div className="flex flex-col gap-2 ">
-          <label htmlFor="password" className="text-action">
+          <label htmlFor="password" className="text-primary">
             Password
           </label>
           <div className="relative">
@@ -64,7 +67,7 @@ const Register: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border-b border-default w-full bg-transparent outline-none text-white pl-2 pb-2 hover:scale-105 transition-all duration-300"
+              className="border-b border-gray-300 w-full bg-transparent outline-none pl-2 pb-2 text-primary"
               placeholder="123456"
               onFocus={() => setIsVisiblePassword(false)}
             />
@@ -77,17 +80,26 @@ const Register: React.FC = () => {
           </div>
         </div>
         <div className="mt-10">
-          <button className="w-full flex justify-center items-center py-2 bg-action hover:bg-secondary  hover:text-default transition-all rounded">
+          <button
+            className={
+              email === '' || password === ''
+                ? 'w-full flex justify-center items-center py-2 bg-action cursor-not-allowed opacity-50'
+                : 'w-full flex justify-center items-center py-2 bg-action hover:bg-secondary  hover:text-default transition-all rounded'
+            }
+          >
             {isLoading ? <Loading /> : <span>Register</span>}
           </button>
         </div>
         <div className="mt-10 flex justify-center">
           <Link to="/login" className="flex items-center gap-2">
-            <span className="text-default">Already have an account?</span>
+            <span className="text-primary">Already have an account?</span>
             <span className="text-action">Login</span>
           </Link>
         </div>
       </form>
+      <div className="w-1/3">
+        <img src={loginImageUrl} alt="login" className="w-full" />
+      </div>
     </div>
   )
 }

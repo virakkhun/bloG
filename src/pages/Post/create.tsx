@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
-import Spinner from '../../components/assets/Spinner'
+import Loading from '../../components/assets/Loading'
 import { createPost } from '../../features/post/createPostSlice'
 import { userInfo } from '../../utils/storage/userInfo'
 
@@ -12,6 +12,7 @@ const CreatePost: React.FC = () => {
   let navigate = useNavigate()
   const [title, setTitle] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
+  const [slug, setSlug] = useState<string>('')
   const { isLoading } = useSelector((state: RootState) => state.createPost)
   const dispatch = useDispatch<AppDispatch>()
 
@@ -23,59 +24,80 @@ const CreatePost: React.FC = () => {
         body: desc,
         title: title,
         authorId: userInfo().id,
-        slug: `#${title}_`
+        slug: slug !== '' ? slug : `#${title}_`
       })
     ).then(() => {
-      navigate('/post')
+      if (!isLoading) {
+        navigate('/')
+      }
     })
   }
-  if (!isLoading) {
-    return (
-      <div className="flex justify-center items-center w-full h-screen">
-        <form
-          onSubmit={handleSubmit}
-          className="p-4 flex flex-col gap-5 md:w-1/3 w-full"
-        >
-          <div className="flex flex-col gap-2">
+
+  return (
+    <div className="flex justify-between items-center w-full">
+      <div className="p-4 gap-5 md:w-1/3 w-full">
+        <div className="w-16 h-16 rounded-full">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+            alt="profile"
+            className="w-16 h-16 rounded-full border border-gray-300"
+          />
+        </div>
+        <p className="mt-2">
+          {userInfo().name === null ? 'Avatar' : userInfo().name}
+          <span className="bg-black rounded-md text-white px-1 ml-2">
+            {userInfo().status ? 'active' : 'sleep'}
+          </span>
+        </p>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-10">
+          <div>
             <input
               autoFocus={true}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               type="text"
               id="title"
-              placeholder="Title"
-              className="bg-transparent text-default p-2 border-b border-1 hover:shadow-lg outline-none focus:outline-none"
+              placeholder="Title..."
+              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-1 outline-none focus:outline-none"
+              autoComplete="none"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <input
+              autoFocus={true}
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
+              type="text"
+              id="title"
+              placeholder="#Slug..."
+              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-1 outline-none focus:outline-none"
+              autoComplete="none"
+            />
+          </div>
+          <div>
+            <textarea
+              rows={5}
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
-              type="text"
               id="desc"
               placeholder="Description"
-              className="bg-transparent text-default p-2 border-b border-1 hover:shadow-lg outline-none focus:outline-none"
+              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-1 outline-none focus:outline-none"
+              autoComplete="none"
             />
           </div>
           <div className="mt-10">
             <button
               type="submit"
-              className="rounded-md bg-action w-full py-1 hover:text-action hover:bg-secondary transition-all"
+              className="rounded-md bg-action w-full py-1 hover:text-action hover:bg-secondary transition-all flex justify-center items-center"
             >
-              Post
+              {isLoading ? <Loading /> : 'Post'}
             </button>
           </div>
         </form>
       </div>
-    )
-  } else {
-    return (
-      <div className="flex flex-col justify-center items-center gap-3 w-full h-screen">
-        <p className="text-default">Loading...</p>
-        <Spinner />
-      </div>
-    )
-  }
+      <div className="w-1/2 md:block hidden"></div>
+    </div>
+  )
 }
 
 export default CreatePost
