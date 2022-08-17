@@ -24,4 +24,6 @@ export const getCookie = (key: string) => {
   if(value !== undefined && value !== '') {
     return decryptHelper(value.toString())
   }
+
+  return ''
 }
