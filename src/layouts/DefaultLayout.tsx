@@ -8,9 +8,11 @@ const DefaultLayout: React.FC = () => {
   const auth = getCookie('tk')
 
   return (
-    <div className="lg:px-32 md:px-16 px-2 bg-primary">
+    <div className="bg-white">
       <Header />
-      <div>{ auth !== '' ? <Outlet /> : Navigate({to: '/login'}) }</div>
+      <div className="lg:px-32 md:px-16 px-2">
+        {auth !== '' ? <Outlet /> : Navigate({ to: '/login' })}
+      </div>
       <Footer />
     </div>
   )
