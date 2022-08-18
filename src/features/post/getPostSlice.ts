@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { useGetPostService } from './services/getPost.service'
 import { IPost } from './interface/post.type'
 
-const initialState: IPost = {
+const initialState: IPost & { isLoading: boolean } = {
   isLoading: false,
   post: []
 }
@@ -20,7 +20,7 @@ export const postSlice = createSlice({
       .addCase(fetchPosts.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(fetchPosts.fulfilled, (state, {payload}) => {
+      .addCase(fetchPosts.fulfilled, (state, { payload }) => {
         state.isLoading = false
         state.post = payload.data
       })
