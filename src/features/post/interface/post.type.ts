@@ -10,7 +10,6 @@ export interface PostBody {
   comment?: IComment[]
 }
 export interface IPost {
-  isLoading: boolean
   post: PostBody[]
 }
 
