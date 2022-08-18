@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { saveCookie } from '../../utils/storage/useCookie'
 import { ILogin } from './interface/login.type'
 import { LoginService } from './service/login.service'
-import { useGetUserInfoService } from '../user/service/getUserInfo.service'
 
 export const initialState: { isLoading: boolean } = {
   isLoading: false

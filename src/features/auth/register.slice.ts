@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { IServerResponse } from '../../utils/api/IServerRepsone.type'
 import { IRegister } from './interface/register.type'
 import { RegisterService } from './service/register.service'
 
