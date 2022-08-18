@@ -8,20 +8,14 @@ export const saveCookie = (payload: {
 }): void => {
   const encryptedPayload = encryptHelper(payload.text)
 
-  if (payload.rememberMe) {
-    jsCookie.set(payload.key, encryptedPayload, {
-      expires: 60 * 60 * 24 * 7
-    })
-  }
-
-  if (!payload.rememberMe) {
-    jsCookie.set(payload.key, encryptedPayload)
-  }
+  jsCookie.set(payload.key, encryptedPayload, {
+    expires: 60 * 60 * 24 * 7
+  })
 }
 
 export const getCookie = (key: string) => {
   const value = jsCookie.get(key)
-  if(value !== undefined && value !== '') {
+  if (value !== undefined && value !== '') {
     return decryptHelper(value.toString())
   }
 

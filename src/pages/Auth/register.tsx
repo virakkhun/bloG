@@ -34,10 +34,10 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-screen bg-white flex gap-10 justify-center items-center md:px-0 px-4">
+    <div className="w-full h-screen bg-white flex lg:flex-row flex-col-reverse gap-10 justify-center items-center md:px-0 px-4">
       <form
         onSubmit={handleSubmit}
-        className="md:w-1/3 w-full flex flex-col gap-4 md:p-4 bg-default p-2 border border-gray-300"
+        className="lg:w-1/3 md:w-1/2 w-full flex flex-col gap-4 md:p-4 bg-default p-2 border border-gray-300"
       >
         <p className="text-3xl font-bold text-center mb-10 text-primary">
           bLoG
@@ -51,7 +51,7 @@ const Register: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border-b border-gray-300 w-full bg-transparent outline-none pl-2 pb-2 text-primary"
+            className="border-b border-gray-300 w-full bg-transparent shadow-none outline-none pl-2 pb-2 text-primary"
             placeholder="johndoe@gmail.com"
             autoComplete="none"
             autoFocus={true}
@@ -67,7 +67,7 @@ const Register: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border-b border-gray-300 w-full bg-transparent outline-none pl-2 pb-2 text-primary"
+              className="border-b border-gray-300 w-full bg-transparent shadow-none outline-none pl-2 pb-2 text-primary"
               placeholder="123456"
               onFocus={() => setIsVisiblePassword(false)}
             />
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </form>
-      <div className="w-1/3">
+      <div className="md:w-1/3 w-3/4">
         <img src={loginImageUrl} alt="login" className="w-full" />
       </div>
     </div>

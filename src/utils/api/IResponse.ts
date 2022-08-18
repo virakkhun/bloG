@@ -1,3 +1,3 @@
-import { IServerResponse } from '../../features/IServerRepsone.type'
+import { IServerResponse } from './IServerRepsone.type'
 
-export type IResponse<T> = IServerResponse  & T
+export type IResponse<T, PayloadType = {}> = IServerResponse<PayloadType> & T

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { IServerResponse } from '../IServerRepsone.type'
+import { IServerResponse } from '../../utils/api/IServerRepsone.type'
 import { IRegister } from './interface/register.type'
 import { RegisterService } from './service/register.service'
 
@@ -9,8 +9,7 @@ export const initialState: { isLoading: boolean } = {
 
 export const Register = createAsyncThunk(
   'user/register',
-  async (payload: IRegister) =>
-    (await RegisterService(payload)) as IServerResponse
+  async (payload: IRegister) => await RegisterService(payload)
 )
 
 export const registerSlice = createSlice({

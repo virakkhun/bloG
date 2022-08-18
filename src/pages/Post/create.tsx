@@ -9,6 +9,10 @@ import { userInfo } from '../../utils/storage/userInfo'
 
 const CreatePost: React.FC = () => {
   document.title = 'Create Post'
+  window.scrollTo({
+    behavior: 'smooth',
+    top: 0
+  })
   let navigate = useNavigate()
   const [title, setTitle] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
@@ -64,7 +68,6 @@ const CreatePost: React.FC = () => {
           </div>
           <div>
             <input
-              autoFocus={true}
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               type="text"
