@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
 import Spinner from '../../components/assets/Spinner'
+import PostButton from '../../components/posts/PostButton'
 import PostComponent from '../../components/posts/PostComponet'
 import { fetchPosts } from '../../features/post/getPostSlice'
 
@@ -32,17 +33,22 @@ const Post: React.FC = () => {
   } else if (post) {
     return (
       <div className="text-primary my-10 md:w-1/2 w-full">
-        <div className="w-full">
+        <div className="w-full relative z-10">
           {post.map((p, i) => (
             <div key={p.id}>
               <PostComponent
                 body={p.body}
-                id={i + 1}
+                id={p.id ? p.id : 0}
                 title={p.title}
                 slug={p.slug}
+                isShowCommentButton={true}
+                userProfile={p.title}
               />
             </div>
           ))}
+          <div className="sticky bottom-0 w-full">
+            <PostButton />
+          </div>
         </div>
       </div>
     )
@@ -55,7 +61,7 @@ const Post: React.FC = () => {
         to="/post/create"
         className="text-action hover:text-default transition-all flex items-center gap-2 mb-md"
       >
-        <span>Post Here</span>
+        <span>Start post</span>
       </Link>
     </div>
   )

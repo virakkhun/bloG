@@ -6,4 +6,5 @@ export interface IUser {
   gender: string
   image: string
   status: boolean
+  password?: string
 }

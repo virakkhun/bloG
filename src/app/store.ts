@@ -4,6 +4,8 @@ import postReducer from '../features/post/getPostSlice'
 import loginReducer from '../features/auth/login.slice'
 import registerReducer from '../features/auth/register.slice'
 import userInfoReducer from '../features/user/getuserinfo.slice'
+import getPostDetailReducer from '../features/post/getpostdetail.slice'
+import postCommentSlice from '../features/comment/post-comment.slice'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +13,9 @@ export const store = configureStore({
     createPost: createPostReducer,
     login: loginReducer,
     register: registerReducer,
-    userinfo: userInfoReducer
+    userinfo: userInfoReducer,
+    postdetail: getPostDetailReducer,
+    postcomment: postCommentSlice
   }
 })
 

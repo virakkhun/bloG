@@ -173,6 +173,53 @@ const Icons: React.FC<Props> = (props: Props) => {
         </svg>
       </div>
     )
+  } else if (props.name === 'airline') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+        </svg>
+      </div>
+    )
+  } else if (props.name === 'post') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    )
+  } else if (props.name === 'chevron-left') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    )
   }
 
   return <></>
