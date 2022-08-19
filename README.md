@@ -1,15 +1,10 @@
-<p align='center'>
-  <h1>bloG</h1>
-  <img src='https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f3b4.png' width="20px" />
-</p>
+<h1>bloG</h1>
+<img src='https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f3b4.png' width="20px" />
 
 
 ### Description
 
-This app is build with React 18.x . The purpose of this app is to create a simple weather statistic with a minimal information.
-The app is using `open weather api` a greate api ever. Redux Toolkit is being used as an State Management, purposely for learning.
-For styling, `TailwindCSS` one of the greatest CSS framework ever. Weather App is the most popular `React App` out there. 
-I'm exploring more about `React`. The most interesting thing about `React` for me is **useEffect**. 
+bloG is a simple blog website, yet it is minimal.
 
 - Clone this repository
 
@@ -34,8 +29,4 @@ I'm exploring more about `React`. The most interesting thing about `React` for m
   ```bash 
     yarn dev
   ```
-
-  ***App is running at***
-
-  [View](http://localhost:3000)
 
