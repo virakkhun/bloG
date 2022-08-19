@@ -220,6 +220,40 @@ const Icons: React.FC<Props> = (props: Props) => {
         </svg>
       </div>
     )
+  } else if (props.name === 'info') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    )
+  } else if (props.name === 'email') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    )
   }
 
   return <></>
