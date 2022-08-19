@@ -27,7 +27,7 @@ const CreatePost: React.FC = () => {
       createPost({
         body: desc,
         title: title,
-        authorId: userInfo().id,
+        authorId: userInfo().id as string,
         slug: slug !== '' ? slug : `#${title}_`
       })
     ).then(() => {
