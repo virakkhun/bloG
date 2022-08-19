@@ -32,7 +32,7 @@ const Post: React.FC = () => {
     )
   } else if (post) {
     return (
-      <div className="text-primary my-10 md:w-1/2 w-full">
+      <div className="text-primary my-10 w-full">
         <div className="w-full relative z-10">
           {post.map((p, i) => (
             <div key={p.id}>

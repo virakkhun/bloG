@@ -58,7 +58,7 @@ const Login: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border-b border-gray-300 w-full bg-transparent outline-none shadow-none pl-2 pb-2 text-primary"
+            className="border-b border-b-gray-300 w-full bg-transparent outline-none shadow-none pl-2 pb-2 text-primary"
             placeholder="johndoe@gmail.com"
             autoFocus={true}
             autoComplete="none"
@@ -74,7 +74,7 @@ const Login: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border-b border-gray-300 w-full bg-transparent outline-none shadow-none pl-2 pb-2 text-primary focus:bg-transparent"
+              className="border-b border-b-gray-300 w-full bg-transparent outline-none shadow-none pl-2 pb-2 text-primary focus:bg-transparent"
               placeholder="123456"
               onFocus={() => setIsVisiblePassword(false)}
             />

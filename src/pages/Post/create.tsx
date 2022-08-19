@@ -62,7 +62,7 @@ const CreatePost: React.FC = () => {
               type="text"
               id="title"
               placeholder="Title..."
-              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-1 outline-none focus:outline-none"
+              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
               autoComplete="none"
             />
           </div>
@@ -73,7 +73,7 @@ const CreatePost: React.FC = () => {
               type="text"
               id="title"
               placeholder="#Slug..."
-              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-1 outline-none focus:outline-none"
+              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
               autoComplete="none"
             />
           </div>
@@ -84,7 +84,7 @@ const CreatePost: React.FC = () => {
               onChange={(e) => setDesc(e.target.value)}
               id="desc"
               placeholder="Description"
-              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-1 outline-none focus:outline-none"
+              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
               autoComplete="none"
             />
           </div>
