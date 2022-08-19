@@ -39,7 +39,7 @@ const CreatePost: React.FC = () => {
 
   return (
     <div className="flex justify-between items-center w-full">
-      <div className="p-4 gap-5 md:w-1/3 w-full">
+      <div className="p-4 gap-5 w-full">
         <div className="w-16 h-16 rounded-full">
           <img
             src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"

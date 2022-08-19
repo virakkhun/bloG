@@ -1,3 +1,20 @@
 [[redirects]]
-  from = "*"
+  from = "/"
   to = "/"
+
+[[redirects]]
+  from = '/post/create'
+  to = '/post/create'
+
+[[redirects]]
+  from = '/login'
+  to = '/login'
+
+[[redirects]]
+  from = '/register'
+  to = '/register'
+
+[[redirects]]
+  from = '/post'
+  to = '/post'
+  query = {postId = ':postId'}
