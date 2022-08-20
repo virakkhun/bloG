@@ -4,11 +4,12 @@ import Header from '../components/layouts/Header'
 import Footer from '../components/layouts/Footer'
 import { getCookie } from '../utils/storage/useCookie'
 import UserProfile from '../components/user/UserProfile'
-import { userInfo } from '../utils/storage/userInfo'
+import { useSelector } from 'react-redux'
+import { RootState } from '../app/store'
 
 const DefaultLayout: React.FC = () => {
   const auth = getCookie('tk')
-  const user = userInfo()
+  const { userInfo } = useSelector((state: RootState) => state.userinfo)
   return (
     <div className="bg-white">
       <Header />
@@ -18,14 +19,14 @@ const DefaultLayout: React.FC = () => {
         </div>
         <div className="w-1/2 lg:block hidden">
           <div className="sticky top-28">
-            {user !== null ? (
+            {userInfo !== null ? (
               <UserProfile
-                age={user.age}
-                email={user.email}
-                gender={user.gender}
-                image={user.image}
-                name={user.name}
-                status={user.status}
+                age={userInfo.age}
+                email={userInfo.email}
+                gender={userInfo.gender}
+                image={userInfo.image}
+                name={userInfo.name}
+                status={userInfo.status}
               />
             ) : (
               ''

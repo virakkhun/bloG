@@ -8,3 +8,5 @@ export interface IUser {
   status: boolean
   password?: string
 }
+
+export interface IUpdateIUser extends Partial<IUser> {}

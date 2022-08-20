@@ -5,13 +5,16 @@ export async function useApiWrapper<T>(
   endpoint: string,
   mode?: string,
   payload?: T,
+  content?: string
 ) {
   return await fetch(`${BASE_URL}${endpoint}`, {
     body: JSON.stringify(payload),
     method: mode,
     headers: {
-      'Content-type': 'application/json',
-      'Authorization': `Bearer ${getCookie('tk') !== '' ? getCookie('tk') : ""}`,
+      'Content-type':
+        content === undefined ? 'application/json' : 'multipart/form-data',
+      Authorization: `Bearer ${getCookie('tk') !== '' ? getCookie('tk') : ''}`
     },
+    mode: 'cors'
   })
 }

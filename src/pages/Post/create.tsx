@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
 import Loading from '../../components/assets/Loading'
+import Icons from '../../components/Icons/Icons'
 import { createPost } from '../../features/post/createPostSlice'
 import { userInfo } from '../../utils/storage/userInfo'
 
@@ -39,7 +40,10 @@ const CreatePost: React.FC = () => {
 
   return (
     <div className="flex justify-between items-center w-full">
-      <div className="p-4 gap-5 w-full">
+      <div className="w-full">
+        <div className="mt-10 mb-5" onClick={() => navigate(-1)}>
+          <Icons name="chevron-left" style="h-5 w-5 cursor-pointer" />
+        </div>
         <div className="w-16 h-16 rounded-full">
           <img
             src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
