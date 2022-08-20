@@ -17,7 +17,9 @@ const Post: React.FC = () => {
   useEffect(() => {
     if (effect.current) {
       effect.current = false
-      dispatch(fetchPosts())
+      if (post.length === 0) {
+        dispatch(fetchPosts())
+      }
     }
   }, [])
 

@@ -43,7 +43,7 @@ const PostDetail: React.FC = () => {
     dispatch(getPostDetail(params.postId ?? ''))
   }, [])
 
-  if (isLoading) {
+  if (isLoading && !isPosting) {
     return (
       <div className="w-full flex justify-center mt-10">
         <div>

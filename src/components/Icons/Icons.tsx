@@ -254,6 +254,67 @@ const Icons: React.FC<Props> = (props: Props) => {
         </svg>
       </div>
     )
+  } else if (props.name === 'edit') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+        </svg>
+      </div>
+    )
+  } else if (props.name === 'camera') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    )
+  } else if (props.name === 'upload') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+          <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+        </svg>
+      </div>
+    )
+  } else if (props.name === 'cancel') {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={props.style}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    )
   }
 
   return <></>

@@ -3,9 +3,11 @@ import createPostReducer from '../features/post/createPostSlice'
 import postReducer from '../features/post/getPostSlice'
 import loginReducer from '../features/auth/login.slice'
 import registerReducer from '../features/auth/register.slice'
-import userInfoReducer from '../features/user/getuserinfo.slice'
 import getPostDetailReducer from '../features/post/getpostdetail.slice'
 import postCommentSlice from '../features/comment/post-comment.slice'
+import uploadImageSlice from '../features/user/upload-image.slice'
+import modalControlSlice from '../features/modal/close-modal.slice'
+import userInfoSlice from '../features/user/user-info.slice'
 
 export const store = configureStore({
   reducer: {
@@ -13,9 +15,11 @@ export const store = configureStore({
     createPost: createPostReducer,
     login: loginReducer,
     register: registerReducer,
-    userinfo: userInfoReducer,
     postdetail: getPostDetailReducer,
-    postcomment: postCommentSlice
+    postcomment: postCommentSlice,
+    upoloadimage: uploadImageSlice,
+    modalcontrol: modalControlSlice,
+    userinfo: userInfoSlice
   }
 })
 
