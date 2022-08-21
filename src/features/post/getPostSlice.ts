@@ -21,8 +21,13 @@ export const postSlice = createSlice({
         state.isLoading = true
       })
       .addCase(fetchPosts.fulfilled, (state, { payload }) => {
+        if(payload.statusCode === 200) {
+          state.isLoading = false
+          state.post = payload.data
+        }
+
+        state.post = []
         state.isLoading = false
-        state.post = payload.data
       })
       .addCase(fetchPosts.rejected, (state) => {
         state.isLoading = false
