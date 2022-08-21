@@ -24,10 +24,10 @@ export const postSlice = createSlice({
         if(payload.statusCode === 200) {
           state.isLoading = false
           state.post = payload.data
+        } else {
+          state.post = []
+          state.isLoading = false
         }
-
-        state.post = []
-        state.isLoading = false
       })
       .addCase(fetchPosts.rejected, (state) => {
         state.isLoading = false
