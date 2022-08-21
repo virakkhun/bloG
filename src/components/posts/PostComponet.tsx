@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Icons from '../Icons/Icons'
+import React from 'react'
 
 interface Props {
   userId?: string
@@ -8,8 +9,10 @@ interface Props {
   body: string
   slug: string
   isShowCommentButton?: boolean
-  userProfile?: string
+  authorImage?: string
   userName?: string
+  status?: boolean
+  image?: string
 }
 
 const PostComponent: React.FC<Props> = ({
@@ -18,18 +21,18 @@ const PostComponent: React.FC<Props> = ({
   title,
   slug,
   isShowCommentButton,
-  userProfile,
-  userName
+  authorImage,
+  userName,
+  image
 }) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
-        <div>
+        <div className="flex items-center gap-1 cursor-pointer">
           <img
-            src={`https://avatars.dicebear.com/api/avataaars/${userProfile?.slice(
-              1
-            )}.png`}
-            className="w-10 h-10 rounded-full border border-gray-300 object-cover"
+            src={authorImage}
+            className="w-10 h-10 object-center rounded-full border border-gray-300 object-cover"
+            alt={authorImage?.split(/-|.|_/g)[-1]}
           />
           <p>{userName}</p>
         </div>
@@ -38,6 +41,11 @@ const PostComponent: React.FC<Props> = ({
         </div>
       </div>
       <p className="truncate text-xl my-sm text-action">{title}</p>
+      <img
+        src={image}
+        alt={image?.split(/-|.|_/g)[-1]}
+        className='w-full h-full object-contain'
+      />
       <p>{body}</p>
       <div className="flex justify-between items-center">
         <p className="text-sm cursor-pointer bg-primary px-1 text-white">

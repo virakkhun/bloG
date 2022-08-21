@@ -4,9 +4,8 @@ export interface IUser {
   name: string
   age: number
   gender: string
-  image: string
+  authorImage: string
   status: boolean
-  password?: string
 }
 
 export interface IUpdateIUser extends Partial<IUser> {}

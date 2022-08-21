@@ -7,6 +7,7 @@ import Icons from '../../components/Icons/Icons'
 import { Login as UserLogin } from '../../features/auth/login.slice'
 import { useGetUserInfoService } from '../../features/user/service/getUserInfo.service'
 import loginImageUrl from '../../assets/images/Blogging-pana.svg'
+import { UserInfoThunk } from '../../features/user/user-info.slice'
 
 const Login: React.FC = () => {
   document.title = 'Login'
@@ -29,14 +30,7 @@ const Login: React.FC = () => {
         password: password
       })
     ).then(() => {
-      if (!isLoading) {
-        useGetUserInfoService(email).then((data) => {
-          if (data.statusCode === 200) {
-            localStorage.setItem('userInfo', JSON.stringify(data.data))
-          }
-        })
-        navigate('/')
-      }
+      dispatch(UserInfoThunk(email)).finally(() => navigate('/'))
     })
   }
 

@@ -1,16 +1,20 @@
 import { PostBody } from '../interface/post.type'
-import { useApiWrapper } from '../../../utils/api/ApiWrapper'
 import { IResponse } from '../../../utils/api/IResponse'
-
+import { getCookie } from '../../../utils/storage/useCookie'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export const CreatePostService = async (
-  payload: PostBody
+  payload: FormData
 ): Promise<IResponse<PostBody>> => {
-  const createPost = await useApiWrapper<PostBody>('/post/create', 'POST', {
-    slug: payload.slug,
-    title: payload.title,
-    body: payload.body,
-    authorId: payload.authorId
-  })
+  const createPost = await fetch(
+    `${BASE_URL}/post/create`,
+    {
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${getCookie('tk') !== '' ? getCookie('tk') : ''}`
+      },
+      method: 'POST'
+    }
+  )
 
   return await createPost.json()
 }

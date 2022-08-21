@@ -4,17 +4,69 @@ import { openModal } from '../../features/modal/close-modal.slice'
 import { IUser } from '../../features/user/interface/user.type'
 import Icons from '../Icons/Icons'
 import ImageUpload from './ImageUpload'
+import React, { useState } from 'react'
+import EditInfo from './EditInfo'
+import { UpdateUserInfo } from '../../features/user/update-user-info.slice'
+import { userInfo } from '../../utils/storage/userInfo'
+import { persist, UserInfoThunk } from '../../features/user/user-info.slice'
+import Loading from '../assets/Loading'
 
 const UserProfile: React.FC<IUser> = ({
   age,
   email,
   gender,
-  image,
+  authorImage,
   name,
   status
 }) => {
+  const [userAge, setUserAge] = useState('')
+  const [userGender, setUserGender] = useState('')
   const { isShow } = useSelector((state: RootState) => state.modalcontrol)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isShowEditAge, setIsShowEditAge] = useState(false)
+  const [isShowEditGender, setIsShowEditGender] = useState(false)
   const dispatch = useDispatch<AppDispatch>()
+
+  const handleSubmitAge = async (e: any) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    if(userAge === '') return
+    await dispatch(
+      UpdateUserInfo({
+        age: +userAge,
+        query: userInfo().id ?? ''
+      })
+    ).then(() => {
+      dispatch(UserInfoThunk(userInfo().email)).then(() => {
+        persist()
+        setIsSubmitting(false)
+        setIsShowEditAge(false)
+      })
+    })
+  }
+
+  const handleSubmitGender = async (e: any) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    if(userGender === '') return
+    await dispatch(
+      UpdateUserInfo({
+        gender: userGender,
+        query: userInfo().id ?? ''
+      })
+    ).then(() => {
+      dispatch(UserInfoThunk(userInfo().email)).then(() => {
+        persist()
+        setIsSubmitting(false)
+        setIsShowEditGender(false)
+        setUserGender('')
+      })
+    })
+
+  }
+
   return (
     <div className="w-full relative">
       <div className="flex justify-center mt-10">
@@ -26,8 +78,8 @@ const UserProfile: React.FC<IUser> = ({
           }
         >
           <img
-            src={image}
-            alt={image}
+            src={authorImage}
+            alt={authorImage}
             className="w-20 h-20 rounded-full object-cover"
           />
           <div onClick={() => dispatch(openModal())}>
@@ -49,11 +101,15 @@ const UserProfile: React.FC<IUser> = ({
       </div>
       <div className="flex justify-between items-center py-4 pl-2 border-b-2 border-b-gray-300">
         <p>{gender}</p>
-        <Icons name="edit" style="h-5 w-5" />
+        <div className='cursor-pointer' onClick={() => setIsShowEditGender(true)}>
+          <Icons name="edit" style="h-5 w-5" />
+        </div>
       </div>
       <div className="flex justify-between items-center py-4 pl-2 border-b-2 border-b-gray-300">
         <p>{age}</p>
-        <Icons name="edit" style="h-5 w-5" />
+        <div onClick={() => setIsShowEditAge(true)} className='cursor-pointer'>
+          <Icons name="edit" style="h-5 w-5" />
+        </div>
       </div>
       {isShow ? (
         <div className="absolute top-0 w-full h-full bg-black text-default">
@@ -62,6 +118,63 @@ const UserProfile: React.FC<IUser> = ({
       ) : (
         ''
       )}
+      {isShowEditAge ? (
+        <div className="absolute top-0 w-full h-full flex justify-center flex-col bg-black px-4 text-primary">
+          <EditInfo
+            submit={handleSubmitAge}
+            title='Edit Age'
+            closeModal={() => setIsShowEditAge(false)}
+            btnText={isSubmitting ? <Loading /> : 'Submit'}
+            child={
+              <input
+                type='text'
+                value={userAge}
+                onChange={(e) => setUserAge(e.target.value)}
+                className='w-full py-2 px-1 border-primary border focus:border-gray-400 outline-none'
+                placeholder='Enter your age'
+              />
+            }
+          />
+        </div>
+      ) : (
+        ''
+      )}
+      {
+        isShowEditGender ? (
+          <div className="absolute top-0 w-full h-full flex justify-center flex-col bg-black px-4 text-primary">
+            <EditInfo
+              submit={handleSubmitGender}
+              title='Edit Age'
+              closeModal={() => setIsShowEditGender(false)}
+              btnText={isSubmitting ? <Loading /> : 'Submit'}
+              child={
+                <div className='flex flex-col gap-3'>
+                  <div>
+                    <label htmlFor='male' className={userGender === 'male' ? 'text-green-500' : ''}>Male</label>
+                    <input
+                      type='radio'
+                      value='male'
+                      onChange={(e) => setUserGender(e.target.value)}
+                      className='hidden'
+                      id='male'
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor='female' className={userGender === 'female' ? 'text-green-500' : ''}>Female</label>
+                    <input
+                      type='radio'
+                      value='female'
+                      onChange={(e) => setUserGender(e.target.value)}
+                      className='hidden'
+                      id='female'
+                    />
+                  </div>
+                </div>
+              }
+            />
+          </div>
+        ): ''
+      }
     </div>
   )
 }

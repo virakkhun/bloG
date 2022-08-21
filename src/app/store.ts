@@ -8,6 +8,7 @@ import postCommentSlice from '../features/comment/post-comment.slice'
 import uploadImageSlice from '../features/user/upload-image.slice'
 import modalControlSlice from '../features/modal/close-modal.slice'
 import userInfoSlice from '../features/user/user-info.slice'
+import getCommentSlice from '../features/comment/get-comment.slice'
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ export const store = configureStore({
     postcomment: postCommentSlice,
     upoloadimage: uploadImageSlice,
     modalcontrol: modalControlSlice,
-    userinfo: userInfoSlice
+    userinfo: userInfoSlice,
+    comments: getCommentSlice
   }
 })
 

@@ -7,6 +7,7 @@ import Login from './pages/Auth/login'
 import Register from './pages/Auth/register'
 import Error from './pages/error'
 import PostDetail from './pages/Post/detail'
+import Profile from './pages/User'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post/create" element={<CreatePost />} />
         <Route path="/post/:postId" element={<PostDetail />} />
+        <Route path="/user" element={<Profile />} />
       </Route>
       <Route path="/" element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
