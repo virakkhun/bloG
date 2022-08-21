@@ -1,6 +1,6 @@
-import { useApiWrapper } from '../../utils/api/ApiWrapper'
-import { IResponse } from '../../utils/api/IResponse'
-import { IComment } from './comment.type'
+import { useApiWrapper } from '../../../utils/api/ApiWrapper'
+import { IResponse } from '../../../utils/api/IResponse'
+import { IComment } from '../interface/comment.type'
 
 export const PostCommentService = async (
   payload: IComment

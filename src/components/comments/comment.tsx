@@ -1,4 +1,4 @@
-import { IComment } from '../../features/comment/comment.type'
+import { IComment } from '../../features/comment/interface/comment.type'
 
 interface Props extends Partial<IComment> {}
 

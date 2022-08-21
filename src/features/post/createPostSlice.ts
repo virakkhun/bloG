@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { PostBody } from './interface/post.type'
 import { CreatePostService } from './services/createPost.service'
 
 const initialState: { isLoading: boolean } = {
@@ -8,7 +7,8 @@ const initialState: { isLoading: boolean } = {
 
 export const createPost = createAsyncThunk(
   'post/createPost',
-  async (postBody: PostBody) => {
+  async (postBody: FormData) => {
+    console.log(postBody)
     return await CreatePostService(postBody)
   }
 )

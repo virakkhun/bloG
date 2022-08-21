@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { IComment } from './comment.type'
-import { PostCommentService } from './post-comment.service'
+import { IComment } from './interface/comment.type'
+import { PostCommentService } from './service/post-comment.service'
 
 const initialState: { isLoading: boolean } = {
   isLoading: false

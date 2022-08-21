@@ -15,7 +15,6 @@ export const UpdateUserInfoService = async (
       name: payload.name,
       status: payload.status
     },
-    'multipart/form-data'
   )
 
   return update.json()

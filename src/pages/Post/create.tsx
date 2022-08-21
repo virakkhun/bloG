@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -18,30 +18,49 @@ const CreatePost: React.FC = () => {
   const [title, setTitle] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
+  const [image, setImage] = useState<string>('')
+  const [file, setFile] = useState<File | any>()
   const { isLoading } = useSelector((state: RootState) => state.createPost)
   const dispatch = useDispatch<AppDispatch>()
+  const effect = useRef(true)
 
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault()
-    if (title === '' && desc === '') return
-    await dispatch(
-      createPost({
-        body: desc,
-        title: title,
-        authorId: userInfo().id as string,
-        slug: slug !== '' ? slug : `#${title}_`
+    if(effect.current) {
+      effect.current = false
+      if (title === '' && desc === '' && slug === '') return
+      let formData = new FormData()
+      formData.append('body', desc)
+      formData.append('title', title)
+      formData.append('slug', slug !== '' ? `#${slug}` : `#${title}`)
+      formData.append('authorId', userInfo().id as string)
+      formData.append('image', file, file.name)
+      await dispatch(
+        createPost(formData)
+      ).then(() => {
+        if (!isLoading) {
+          navigate('/')
+        }
       })
-    ).then(() => {
-      if (!isLoading) {
-        navigate('/')
+    }
+  }
+
+  const loadImage = (file: FileList | null) => {
+    if (file !== null) {
+      const blob = URL.createObjectURL(file[0])
+      const reader = new FileReader()
+      reader.onload = () => {
+        setImage(blob)
       }
-    })
+      reader.readAsArrayBuffer(file[0])
+      setFile(file[0])
+    }
   }
 
   return (
-    <div className="flex justify-between items-center w-full">
+    <div className="flex items-center w-full">
       <div className="w-full">
-        <div className="mt-10 mb-5" onClick={() => navigate(-1)}>
+        <div className="mt-5 mb-5" onClick={() => navigate(-1)}>
           <Icons name="chevron-left" style="h-5 w-5 cursor-pointer" />
         </div>
         <div className="w-16 h-16 rounded-full">
@@ -92,7 +111,18 @@ const CreatePost: React.FC = () => {
               autoComplete="none"
             />
           </div>
-          <div className="mt-10">
+          {
+            image !== "" ? (
+              <img src={image} alt='preview image'/>
+            ): (<div>
+              <label htmlFor='image' className='flex justify-center items-center py-2 border border-dashed border-orange-400 rounded-md cursor-pointer'>
+                <Icons name='image' style='h-5 w-5 fill-primary' />
+              </label>
+              <input type='file' id='image' className='hidden' onChange={(e) => loadImage(e.target.files)}/>
+            </div>)
+          }
+
+          <div className="mt-5">
             <button
               type="submit"
               className="rounded-md bg-action w-full py-1 hover:text-action hover:bg-secondary transition-all flex justify-center items-center"
@@ -102,7 +132,6 @@ const CreatePost: React.FC = () => {
           </div>
         </form>
       </div>
-      <div className="w-1/2 md:block hidden"></div>
     </div>
   )
 }

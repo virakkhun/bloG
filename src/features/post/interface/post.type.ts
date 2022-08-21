@@ -1,4 +1,4 @@
-import { IComment } from '../../comment/comment.type'
+import { IComment } from '../../comment/interface/comment.type'
 import { IUser } from '../../user/interface/user.type'
 
 export interface PostBody {
@@ -8,6 +8,10 @@ export interface PostBody {
   body: string
   authorId: string
   comment?: IComment[]
+  name?: string
+  status?: string
+  authorImage?: string
+  images?: string
 }
 export interface IPost {
   post: PostBody[]

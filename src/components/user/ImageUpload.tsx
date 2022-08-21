@@ -60,8 +60,8 @@ const ImageUpload = () => {
   }
 
   return (
-    <div className="w-full h-full flex justify-center items-center relative">
-      <div className="w-1/2 h-1/2 rounded-md border border-dashed border-orange-400 flex justify-center items-center">
+    <div className="w-full h-full flex flex-col gap-4 justify-center items-center relative">
+      <div className="w-1/2 h-1/2 rounded-md border border-dashed border-orange-400  flex justify-center items-center">
         <label
           htmlFor="image"
           className="flex flex-col justify-center items-center gap-2 cursor-pointer"
@@ -76,6 +76,7 @@ const ImageUpload = () => {
           onChange={(e) => LoadImage(e.target.files)}
         />
       </div>
+      <button className='px-4 py-1 text-default border border-default border-dashed' onClick={() => dispatch(closeModal())}>Cancel</button>
       {image !== '' ? (
         <div className="w-full h-full top-0 left-0 absolute">
           <img

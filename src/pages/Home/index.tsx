@@ -17,9 +17,7 @@ const Post: React.FC = () => {
   useEffect(() => {
     if (effect.current) {
       effect.current = false
-      if (post.length === 0) {
-        dispatch(fetchPosts())
-      }
+      dispatch(fetchPosts())
     }
   }, [])
 
@@ -36,7 +34,7 @@ const Post: React.FC = () => {
     return (
       <div className="text-primary my-10 w-full">
         <div className="w-full relative z-10">
-          {post.map((p, i) => (
+          {post.map((p) => (
             <div key={p.id}>
               <PostComponent
                 body={p.body}
@@ -44,7 +42,10 @@ const Post: React.FC = () => {
                 title={p.title}
                 slug={p.slug}
                 isShowCommentButton={true}
-                userProfile={p.title}
+                authorImage={p.authorImage}
+                userName={p.name}
+                userId={p.authorId}
+                image={p.images}
               />
             </div>
           ))}
