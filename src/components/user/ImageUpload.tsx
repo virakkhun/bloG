@@ -9,6 +9,8 @@ import { userInfo } from '../../utils/storage/userInfo'
 import Loading from '../assets/Loading'
 import Icons from '../Icons/Icons'
 
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 const ImageUpload = () => {
   const [image, setImage] = useState<string>('')
   const [file, setFile] = useState<any | File>()
@@ -32,7 +34,7 @@ const ImageUpload = () => {
     let formData = new FormData()
     formData.append('image', file, file.name)
     const response = await fetch(
-      `http://localhost:3000/v1/user/upload?id=${userInfo().id}`,
+      `${BASE_URL}/user/upload?id=${userInfo().id}`,
       {
         body: formData,
         headers: {
