@@ -18,6 +18,7 @@ const Post: React.FC = () => {
     if (effect.current) {
       effect.current = false
       dispatch(fetchPosts())
+      console.log(typeof post)
     }
   }, [])
 
@@ -30,42 +31,48 @@ const Post: React.FC = () => {
         </div>
       </div>
     )
-  } else if (post) {
+  }
+
+  if (post.length === 0) {
     return (
-      <div className="text-primary my-10 w-full">
-        <div className="w-full relative z-10">
-          {post.map((p) => (
-            <div key={p.id}>
-              <PostComponent
-                body={p.body}
-                id={p.id ? p.id : 0}
-                title={p.title}
-                slug={p.slug}
-                isShowCommentButton={true}
-                authorImage={p.authorImage}
-                userName={p.name}
-                userId={p.authorId}
-                image={p.images}
-              />
-            </div>
-          ))}
-          <div className="sticky bottom-0 w-full">
-            <PostButton />
-          </div>
-        </div>
+      <div className="flex flex-col gap-1.5 justify-center items-center w-full h-screen">
+        <p>Create a post to share with everyone.</p>
+        <Link
+          to="/post/create"
+          className="text-action hover:text-default transition-all flex items-center gap-2 mb-md"
+        >
+          <span>Start post</span>
+        </Link>
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col gap-1.5 justify-center items-center w-full h-screen">
-      <p>Create a post to share with everyone.</p>
-      <Link
-        to="/post/create"
-        className="text-action hover:text-default transition-all flex items-center gap-2 mb-md"
-      >
-        <span>Start post</span>
-      </Link>
+    <div className="text-primary my-10 w-full">
+      <div className="w-full relative z-10">
+        {
+          post.map(
+            (p) => (
+              <div key={p.id}>
+                <PostComponent
+                  body={p.body}
+                  id={p.id ? p.id : 0}
+                  title={p.title}
+                  slug={p.slug}
+                  isShowCommentButton={true}
+                  authorImage={p.authorImage}
+                  userName={p.name}
+                  userId={p.authorId}
+                  image={p.images}
+                />
+              </div>
+            )
+          )
+        }
+        <div className="sticky bottom-0 w-full">
+          <PostButton />
+        </div>
+      </div>
     </div>
   )
 }
