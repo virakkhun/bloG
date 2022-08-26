@@ -115,7 +115,7 @@ const UserProfile: React.FC<IUser> = ({
         className="text-primary font-bold text-lg mt-4 text-center"
         onClick={() => setIsShowEditName(true)}
       >
-        {name === null ? 'Enter your name' : ''}
+        {name === null ? 'Enter your name' : name}
       </p>
       <div className="flex items-center gap-2 mt-10 pb-2 border-b-2 border-b-gray-300 w-full">
         <Icons name="info" style="w-7 h-7" />
