@@ -18,7 +18,6 @@ const Post: React.FC = () => {
     if (effect.current) {
       effect.current = false
       dispatch(fetchPosts())
-      console.log(typeof post)
     }
   }, [])
 
@@ -50,25 +49,21 @@ const Post: React.FC = () => {
   return (
     <div className="text-primary my-10 w-full">
       <div className="w-full relative z-10">
-        {
-          post.map(
-            (p) => (
-              <div key={p.id}>
-                <PostComponent
-                  body={p.body}
-                  id={p.id ? p.id : 0}
-                  title={p.title}
-                  slug={p.slug}
-                  isShowCommentButton={true}
-                  authorImage={p.authorImage}
-                  userName={p.name}
-                  userId={p.authorId}
-                  image={p.images}
-                />
-              </div>
-            )
-          )
-        }
+        {post.map((p) => (
+          <div key={p.id}>
+            <PostComponent
+              body={p.body}
+              id={p.id ? p.id : 0}
+              title={p.title}
+              slug={p.slug}
+              isShowCommentButton={true}
+              authorImage={p.authorImage}
+              userName={p.name}
+              userId={p.authorId}
+              image={p.images}
+            />
+          </div>
+        ))}
         <div className="sticky bottom-0 w-full">
           <PostButton />
         </div>
