@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
+import { Login as UserLogin } from '../../features/auth/login.slice'
+import { UserInfoThunk } from '../../features/user/user-info.slice'
 import Loading from '../../components/assets/Loading'
 import Icons from '../../components/Icons/Icons'
-import { Login as UserLogin } from '../../features/auth/login.slice'
-import { useGetUserInfoService } from '../../features/user/service/getUserInfo.service'
 import loginImageUrl from '../../assets/images/Blogging-pana.svg'
-import { UserInfoThunk } from '../../features/user/user-info.slice'
 
 const Login: React.FC = () => {
   document.title = 'Login'
