@@ -6,6 +6,5 @@ export const GetPostDetailService = async (
   id: string
 ): Promise<IResponse<IPostDetail, IPostDetail>> => {
   const response = await useApiWrapper(`/post/detail?postId=${id}`, 'GET')
-
   return await response.json()
 }

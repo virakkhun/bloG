@@ -17,7 +17,10 @@ export interface IPost {
   post: PostBody[]
 }
 
+export interface IAuthor {
+  author: IUser
+}
+
 export interface IPostDetail {
-  post: PostBody
-  user: IUser
+  detail: PostBody & IAuthor
 }

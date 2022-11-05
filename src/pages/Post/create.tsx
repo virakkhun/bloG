@@ -9,7 +9,7 @@ import { createPost } from '../../features/post/createPostSlice'
 import { userInfo } from '../../utils/storage/userInfo'
 
 const CreatePost: React.FC = () => {
-  document.title = 'Create Post'
+  document.title = 'Create Post - bloG'
   window.scrollTo({
     behavior: 'smooth',
     top: 0
@@ -26,7 +26,7 @@ const CreatePost: React.FC = () => {
 
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault()
-    if(effect.current) {
+    if (effect.current) {
       effect.current = false
       if (title === '' && desc === '' && slug === '') return
       let formData = new FormData()
@@ -35,9 +35,7 @@ const CreatePost: React.FC = () => {
       formData.append('slug', slug !== '' ? `#${slug}` : `#${title}`)
       formData.append('authorId', userInfo().id as string)
       formData.append('image', file, file.name)
-      await dispatch(
-        createPost(formData)
-      ).then(() => {
+      await dispatch(createPost(formData)).then(() => {
         if (!isLoading) {
           navigate('/')
         }
@@ -65,7 +63,11 @@ const CreatePost: React.FC = () => {
         </div>
         <div className="w-16 h-16 rounded-full">
           <img
-            src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+            src={
+              userInfo().authorImage
+                ? userInfo().authorImage
+                : 'https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png'
+            }
             alt="profile"
             className="w-16 h-16 rounded-full border border-gray-300"
           />
@@ -85,7 +87,7 @@ const CreatePost: React.FC = () => {
               type="text"
               id="title"
               placeholder="Title..."
-              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
+              className="w-full bg-transparent text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
               autoComplete="none"
             />
           </div>
@@ -96,7 +98,7 @@ const CreatePost: React.FC = () => {
               type="text"
               id="title"
               placeholder="#Slug..."
-              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
+              className="w-full bg-transparent text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
               autoComplete="none"
             />
           </div>
@@ -107,20 +109,28 @@ const CreatePost: React.FC = () => {
               onChange={(e) => setDesc(e.target.value)}
               id="desc"
               placeholder="Description"
-              className="w-full bg-transparent text-default focus:text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
+              className="w-full bg-transparent text-primary p-2 border-b border-b-gray-300 outline-none focus:outline-none"
               autoComplete="none"
             />
           </div>
-          {
-            image !== "" ? (
-              <img src={image} alt='preview image'/>
-            ): (<div>
-              <label htmlFor='image' className='flex justify-center items-center py-2 border border-dashed border-orange-400 rounded-md cursor-pointer'>
-                <Icons name='image' style='h-5 w-5 fill-primary' />
+          {image !== '' ? (
+            <img src={image} alt="preview image" />
+          ) : (
+            <div>
+              <label
+                htmlFor="image"
+                className="flex justify-center items-center py-2 border border-dashed border-orange-400 rounded-md cursor-pointer"
+              >
+                <Icons name="image" style="h-5 w-5 fill-primary" />
               </label>
-              <input type='file' id='image' className='hidden' onChange={(e) => loadImage(e.target.files)}/>
-            </div>)
-          }
+              <input
+                type="file"
+                id="image"
+                className="hidden"
+                onChange={(e) => loadImage(e.target.files)}
+              />
+            </div>
+          )}
 
           <div className="mt-5">
             <button

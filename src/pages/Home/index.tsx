@@ -9,7 +9,7 @@ import PostComponent from '../../components/posts/PostComponet'
 import { fetchPosts } from '../../features/post/getPostSlice'
 
 const Post: React.FC = () => {
-  document.title = 'All Posts'
+  document.title = 'All Posts - bloG'
   const { post, isLoading } = useSelector((state: RootState) => state.post)
   const dispatch = useDispatch<AppDispatch>()
   const effect = useRef(true)

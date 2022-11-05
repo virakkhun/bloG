@@ -1,16 +1,18 @@
-import { useApiWrapper } from '../../../utils/api/ApiWrapper'
 import { IResponse } from '../../../utils/api/IResponse'
+import { getCookie } from '../../../utils/storage/useCookie'
 
 export const UploadImageService = async (
   id: string,
   image: any
 ): Promise<IResponse<any>> => {
-  console.log(image)
-  const upload = await useApiWrapper<any>(
-    `/user/upload?id=${id}`,
-    'POST',
-    image
-  )
+  const res = await fetch(`/api/user/upload?id=${id}`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${getCookie('tk')}`
+    },
+    body: image
+  })
 
-  return upload.json()
+  return res.json()
 }

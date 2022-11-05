@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { IPost, IPostDetail } from './interface/post.type'
+import { IUser } from '../user/interface/user.type'
+import { IPostDetail, PostBody } from './interface/post.type'
 import { GetPostDetailService } from './services/getPostDetail.service'
 
 const initialState: IPostDetail & { isLoading: boolean } = {
-  post: {} as any,
-  user: {} as any,
+  detail: {} as PostBody & IUser,
   isLoading: false
 }
 
@@ -27,8 +27,7 @@ const getPostDetailSlice = createSlice({
       .addCase(getPostDetail.fulfilled, (state, { payload }) => {
         if (payload.statusCode === 200) {
           state.isLoading = false
-          state.post = payload.data.post
-          state.user = payload.data.user
+          state.detail = payload.data.detail
         }
       })
       .addCase(getPostDetail.rejected, (state) => {

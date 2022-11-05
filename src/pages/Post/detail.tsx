@@ -2,21 +2,21 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
+import { PostComment } from '../../features/comment/post-comment.slice'
+import { getPostDetail } from '../../features/post/getpostdetail.slice'
+import { GetCommentThunk } from '../../features/comment/get-comment.slice'
+import PostComponent from '../../components/posts/PostComponet'
 import Loading from '../../components/assets/Loading'
 import Spinner from '../../components/assets/Spinner'
 import Comment from '../../components/comments/comment'
 import Icons from '../../components/Icons/Icons'
-import PostComponent from '../../components/posts/PostComponet'
-import { PostComment } from '../../features/comment/post-comment.slice'
-import { getPostDetail } from '../../features/post/getpostdetail.slice'
-import { GetCommentThunk } from '../../features/comment/get-comment.slice'
 
 const PostDetail: React.FC = () => {
   const navigate = useNavigate()
   const params = useParams()
   const [comment, setComment] = useState<string>('')
   const [isPosting, setIsPosting] = useState<boolean>(false)
-  const { isLoading, post, user } = useSelector(
+  const { isLoading, detail } = useSelector(
     (state: RootState) => state.postdetail
   )
   const { comments } = useSelector((state: RootState) => state.comments)
@@ -25,21 +25,21 @@ const PostDetail: React.FC = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-      setIsPosting(!isPosting)
-      await dispatch(
-        PostComment({
-          comment: comment,
-          postId: params.postId ?? ''
-        })
-      ).then(() => {
-        setComment('')
-        setIsPosting(false)
-        dispatch(GetCommentThunk(params.postId ?? ''))
+    setIsPosting(!isPosting)
+    await dispatch(
+      PostComment({
+        comment: comment,
+        postId: params.postId ?? ''
       })
+    ).then(() => {
+      setComment('')
+      setIsPosting(false)
+      dispatch(GetCommentThunk(params.postId ?? ''))
+    })
   }
 
   useEffect(() => {
-    if(effect.current) {
+    if (effect.current) {
       effect.current = false
       dispatch(getPostDetail(params.postId ?? ''))
       dispatch(GetCommentThunk(params.postId ?? ''))
@@ -64,15 +64,15 @@ const PostDetail: React.FC = () => {
       </div>
       <div className="mt-5">
         <PostComponent
-          body={post.body}
-          id={post.id}
-          slug={post.slug}
-          title={post.title}
-          userId={post.authorId}
+          body={detail.body}
+          id={detail.id}
+          slug={detail.slug}
+          title={detail.title}
+          userId={detail.authorId}
           isShowCommentButton={false}
-          userName={user.name}
-          authorImage={user.authorImage}
-          image={post.images}
+          userName={detail.author.name}
+          authorImage={detail.author.authorImage}
+          image={detail.images}
         />
       </div>
       <div className="mt-5 relative">
@@ -104,14 +104,11 @@ const PostDetail: React.FC = () => {
       </div>
 
       <div>
-        {
-          comments.length === 0 ?
-            <p className='text-center mt-3'>No Comments</p>
-            :
-            comments?.map((c) => (
-              <Comment comment={c.comment} key={c.id} />
-            ))
-        }
+        {comments.length === 0 ? (
+          <p className="text-center mt-3">No Comments</p>
+        ) : (
+          comments?.map((c) => <Comment comment={c.comment} key={c.id} />)
+        )}
       </div>
     </div>
   )

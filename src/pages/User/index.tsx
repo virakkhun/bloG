@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { persist } from '../../features/user/user-info.slice'
 import { AppDispatch, RootState } from '../../app/store'
+import { useNavigate } from 'react-router-dom'
 import UserProfile from '../../components/user/UserProfile'
-import { Link, useNavigate } from 'react-router-dom'
 import Icons from '../../components/Icons/Icons'
+import jsCookie from 'js-cookie'
 
 const Profile = () => {
   const navigate = useNavigate()
@@ -12,7 +13,15 @@ const Profile = () => {
   const effect = useRef(true)
   const dispatch = useDispatch<AppDispatch>()
 
+  const logout = () => {
+    jsCookie.remove('tk')
+    localStorage.removeItem('userInfo')
+
+    navigate('/login')
+  }
+
   useEffect(() => {
+    document.title = `${userInfo.name ? userInfo.name : 'User'} - bloG`
     if (effect.current) {
       effect.current = false
       dispatch(persist())
@@ -36,8 +45,8 @@ const Profile = () => {
         ) : (
           ''
         )}
-        <div className='mt-10 flex justify-center'>
-          <Link to='#'>Logout</Link>
+        <div className="mt-10 flex justify-center">
+          <button onClick={logout}>Logout</button>
         </div>
       </div>
     </div>
