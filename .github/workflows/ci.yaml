@@ -1,4 +1,4 @@
-name: Blog Backend CI
+name: Blog CI
 
 on:
   pull_request:
@@ -20,13 +20,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - name: Clean up
+        run: |
+          rm -rf dist
+
       - name: Install Deps
         run: npm i
 
       - name: Setup .env
         run: |
-          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env
-          echo "VITE_ENC_KEY=${{ secrets.VITE_ENC_KEY }}" >> .env
+          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env.production
+          echo "VITE_ENC_KEY=${{ secrets.VITE_ENC_KEY }}" >> .env.production
 
       - name: List Dirs
         run: |
