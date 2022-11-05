@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
-
   return {
     plugins: [react()],
     logLevel: 'info',
@@ -13,8 +12,11 @@ export default defineConfig(({ mode }) => {
       host: true,
       proxy: {
         '/api': {
-          target: process.env.VITE_BASE_URL,
-          changeOrigin: true,
+          target:
+            mode === 'development'
+              ? process.env.VITE_BASE_URL
+              : 'https://api-blog.virak.me/v1',
+          changeOrigin: mode === 'development' ? true : false,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
