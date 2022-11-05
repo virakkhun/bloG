@@ -10,7 +10,8 @@
     "dev": "vite",
     "dev:staging": "vite --mode staging",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "pm2 start blog_frontend"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
