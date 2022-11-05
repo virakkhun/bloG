@@ -37,11 +37,8 @@ jobs:
           echo "Successfully Setup Env"
           ls -la
 
-      - name: Transpile Code
+      - name: Build Code
         run: npm run build
-
-      - name: Start the server
-        run: npm run start
 
       - name: Successfully
         run: |
