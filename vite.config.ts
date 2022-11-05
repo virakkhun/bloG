@@ -10,7 +10,14 @@ export default defineConfig(({ mode }) => {
     logLevel: 'info',
     server: {
       port: 8000,
-      host: true
+      host: true,
+      proxy: {
+        '/api': {
+          target: process.env.VITE_BASE_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
+      }
     }
   }
 })
