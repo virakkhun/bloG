@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
             mode === 'development'
               ? process.env.VITE_BASE_URL
               : 'https://api-blog.virak.me/v1',
-          changeOrigin: mode === 'development' ? true : false,
+          changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
