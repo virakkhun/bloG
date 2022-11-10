@@ -7,31 +7,7 @@ on:
       - 'published'
 
 jobs:
-  clean-up:
-    runs-on: self-hosted
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      - name: clean dist dir
-        run: |
-          rm -rf dist
-
-      - name: list dir
-      - run: |
-          ls -la
-
   install-deps-and-build:
-    needs: clean-up
-
     runs-on: self-hosted
 
     strategy:
@@ -45,6 +21,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+
+      - name: clean dist dir
+        run: |
+          rm -rf dist
+
+      - name: list dir
+      - run: |
+          ls -la
 
       - name: Install Deps
         run: npm i
