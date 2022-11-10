@@ -5,7 +5,7 @@ on:
     branches: ['main']
 
 jobs:
-  install-deps-and-build:
+  build:
     runs-on: self-hosted
 
     strategy:
@@ -14,35 +14,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: use node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: clean dist dir
-        run: |
-          rm -rf dist
-
-      - name: list dir
-      - run: |
-          ls -la
-
       - name: Install Deps
         run: npm i
 
-      - name: Setup Environmen Variables
+      - name: setup environments
         run: |
           echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env.production
           echo "VITE_ENC_KEY=${{ secrets.VITE_ENC_KEY }}" >> .env.production
 
-      - name: Listing Directory
+      - name: list dir
         run: |
-          echo "Successfully Setup Env"
           ls -la
 
-      - name: Start building
-        run: npm run build
+      - name: build for production
+        run: npm run build --if-present
 
-      - name: Start server | Restart Serve
-        run: pm2 serve ./dist 8000
+      - name: start server
+        run: pm2 restart blog-f
