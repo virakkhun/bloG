@@ -5,7 +5,7 @@ export async function useApiWrapper<T>(
   mode?: string,
   payload?: T
 ) {
-  return await fetch(`/api${endpoint}`, {
+  return await fetch(`${import.meta.env.VITE_BASE_URL}${endpoint}`, {
     body: JSON.stringify(payload),
     method: mode,
     headers: {
