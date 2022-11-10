@@ -40,6 +40,8 @@ jobs:
       - name: Build Code
         run: npm run build
 
+      - name: Start server
+        run: pm2 serve dist -p 8080
       - name: Successfully
         run: |
           echo "Server Updated!"
