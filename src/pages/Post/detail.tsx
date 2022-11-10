@@ -16,7 +16,7 @@ const PostDetail: React.FC = () => {
   const params = useParams()
   const [comment, setComment] = useState<string>('')
   const [isPosting, setIsPosting] = useState<boolean>(false)
-  const { isLoading, detail } = useSelector(
+  const { isLoading, detail, author } = useSelector(
     (state: RootState) => state.postdetail
   )
   const { comments } = useSelector((state: RootState) => state.comments)
@@ -70,8 +70,8 @@ const PostDetail: React.FC = () => {
           title={detail.title}
           userId={detail.authorId}
           isShowCommentButton={false}
-          userName={detail.author.name}
-          authorImage={detail.author.authorImage}
+          userName={author.name}
+          authorImage={author.authorImage}
           image={detail.images}
         />
       </div>

@@ -1,11 +1,27 @@
 name: Blog CI
 
 on:
-  pull_request:
+  release:
     branches: ['main']
+    types:
+      - 'published'
 
 jobs:
-  build:
+  clean-up:
+    runs-on: self-hosted
+
+    steps:
+      - name: clean dist dir
+        run: |
+          rm -rf dist
+
+      - name: list dir
+      - run: |
+          ls -la
+
+  install-deps-and-build:
+    needs: clean-up
+
     runs-on: self-hosted
 
     strategy:
@@ -20,28 +36,21 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Clean up
-        run: |
-          rm -rf dist
-
       - name: Install Deps
         run: npm i
 
-      - name: Setup .env
+      - name: Setup Environmen Variables
         run: |
           echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env.production
           echo "VITE_ENC_KEY=${{ secrets.VITE_ENC_KEY }}" >> .env.production
 
-      - name: List Dirs
+      - name: Listing Directory
         run: |
           echo "Successfully Setup Env"
           ls -la
 
-      - name: Build Code
+      - name: Start building
         run: npm run build
 
-      - name: Start server
-        run: pm2 serve dist -p 8080
-      - name: Successfully
-        run: |
-          echo "Server Updated!"
+      - name: Start server | Restart Serve
+        run: pm2 serve ./dist 8000

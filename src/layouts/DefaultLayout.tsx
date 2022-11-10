@@ -4,8 +4,6 @@ import Header from '../components/layouts/Header'
 import Footer from '../components/layouts/Footer'
 import { getCookie } from '../utils/storage/useCookie'
 
-
-
 const DefaultLayout: React.FC = () => {
   const auth = getCookie('tk')
   return (

@@ -5,16 +5,13 @@ const BASE_URL = import.meta.env.VITE_BASE_URL
 export const CreatePostService = async (
   payload: FormData
 ): Promise<IResponse<PostBody>> => {
-  const createPost = await fetch(
-    `${BASE_URL}/post/create`,
-    {
-      body: payload,
-      headers: {
-        Authorization: `Bearer ${getCookie('tk') !== '' ? getCookie('tk') : ''}`
-      },
-      method: 'POST'
-    }
-  )
+  const createPost = await fetch(`${BASE_URL}/post/create`, {
+    body: payload,
+    headers: {
+      Authorization: `Bearer ${getCookie('tk') !== '' ? getCookie('tk') : ''}`
+    },
+    method: 'POST'
+  })
 
   return await createPost.json()
 }

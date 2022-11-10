@@ -8,7 +8,7 @@ export const RegisterService = async (
   const response = await useApiWrapper<IRegister>('/user/create', 'POST', {
     email: payload.email,
     password: payload.password
-  }, )
+  })
 
   return await response.json()
 }

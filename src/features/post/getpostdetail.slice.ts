@@ -5,6 +5,7 @@ import { GetPostDetailService } from './services/getPostDetail.service'
 
 const initialState: IPostDetail & { isLoading: boolean } = {
   detail: {} as PostBody & IUser,
+  author: {} as IUser,
   isLoading: false
 }
 
@@ -28,6 +29,7 @@ const getPostDetailSlice = createSlice({
         if (payload.statusCode === 200) {
           state.isLoading = false
           state.detail = payload.data.detail
+          state.author = payload.data.detail.author
         }
       })
       .addCase(getPostDetail.rejected, (state) => {
