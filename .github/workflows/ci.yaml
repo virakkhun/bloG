@@ -24,10 +24,6 @@ jobs:
         run: |
           rm -rf dist
 
-      - name: list dir
-      - run: |
-          ls -la
-
       - name: Install Deps
         run: npm i
 
