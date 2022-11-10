@@ -23,4 +23,5 @@ export interface IAuthor {
 
 export interface IPostDetail {
   detail: PostBody & IAuthor
+  author: IUser
 }

@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/index'
 import CreatePost from './pages/Post/create'
 import DefaultLayout from './layouts/DefaultLayout'

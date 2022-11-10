@@ -78,7 +78,12 @@ const ImageUpload = () => {
           onChange={(e) => LoadImage(e.target.files)}
         />
       </div>
-      <button className='px-4 py-1 text-default border border-default border-dashed' onClick={() => dispatch(closeModal())}>Cancel</button>
+      <button
+        className="px-4 py-1 text-default border border-default border-dashed"
+        onClick={() => dispatch(closeModal())}
+      >
+        Cancel
+      </button>
       {image !== '' ? (
         <div className="w-full h-full top-0 left-0 absolute">
           <img

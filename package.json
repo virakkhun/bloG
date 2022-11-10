@@ -11,8 +11,7 @@
     "dev:staging": "vite --mode staging",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "pm2 start blog_frontend",
-    "serve": "serve ./dist 8080"
+    "serve": "serve ./dist -p 8080"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",

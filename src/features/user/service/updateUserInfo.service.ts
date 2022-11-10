@@ -14,7 +14,7 @@ export const UpdateUserInfoService = async (
       gender: payload.gender,
       name: payload.name,
       status: payload.status
-    },
+    }
   )
 
   return update.json()
