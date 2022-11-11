@@ -3,10 +3,11 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../app/store'
+import { fetchPosts } from '../../features/post/getPostSlice'
+import { Helmet } from 'react-helmet'
 import Spinner from '../../components/assets/Spinner'
 import PostButton from '../../components/posts/PostButton'
 import PostComponent from '../../components/posts/PostComponet'
-import { fetchPosts } from '../../features/post/getPostSlice'
 
 const Post: React.FC = () => {
   const { post, isLoading } = useSelector((state: RootState) => state.post)
@@ -47,10 +48,25 @@ const Post: React.FC = () => {
 
   return (
     <>
-      <head>
-        <meta property="og:description" content="Welcome to Blog" />
-        <title>All Posts - bloG</title>
-      </head>
+      <Helmet>
+        <title>Home | bloG</title>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="bloG is a mini social media, a legit platform for everyone"
+        />
+        <meta
+          name="keywords"
+          content="mini platform, cambodia, siem reap, khmer, blog, khmer blog, kon khmer, KSK, khmer sl khmer"
+        />
+        <meta
+          property="og:description"
+          content="bloG is a mini social media, which make your day happier."
+        />
+        <meta property="og:title" content="bloG" />
+        <meta property="og:type" content="web application" />
+        <meta property="og:url" content={window.location.hostname} />
+      </Helmet>
       <div className="text-primary my-10 w-full">
         <div className="w-full relative z-10">
           {post.map((p) => (
